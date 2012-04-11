@@ -78,6 +78,7 @@ module MultiJson
   #
   # <tt>:symbolize_keys</tt> :: If true, will use symbols instead of strings for the keys.
   def decode(string, options = {})
+    string.force_encoding 'utf-8'
     engine.decode(string, options)
   rescue engine::ParseError => exception
     raise DecodeError.new(exception.message, exception.backtrace, string)
